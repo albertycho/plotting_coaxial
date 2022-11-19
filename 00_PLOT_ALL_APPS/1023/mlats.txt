@@ -1,0 +1,8 @@
+app, ddr_ipc, cxl_ipc,
+moses,  550,250,
+xapian, 328, 151,
+img-dnn, 276, 185,
+masstree, 234, 187,
+sphinx, 157, 171,
+pagerank, 262,186,
+herd, 139,176,
