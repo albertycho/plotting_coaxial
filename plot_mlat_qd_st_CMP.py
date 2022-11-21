@@ -337,11 +337,11 @@ if infile in os.listdir('.'):
 
     #plt.setp(iax.get_xticklabels(), rotation=35, horizontalalignment='center')
     #plt.setp(iax2.get_xticklabels(), rotation=45, ha='right', fontsize=fs_xtick)
-    plt.setp(iax2.get_xticklabels(), rotation=45, fontsize=fs_xtick)
-    #dx = 1; dy = 0 
-    #offset = matplotlib.transforms.ScaledTranslation(dx, dy, ifig.dpi_scale_trans) 
-    #for label in iax2.xaxis.get_majorticklabels():
-    #    label.set_transform(label.get_transform() + offset)
+    plt.setp(iax2.get_xticklabels(), rotation=45, fontsize=fs_xtick, ha='right')
+    dx = 0.1; dy = 0 
+    offset = matplotlib.transforms.ScaledTranslation(dx, dy, ifig.dpi_scale_trans) 
+    for label in iax2.xaxis.get_majorticklabels():
+        label.set_transform(label.get_transform() + offset)
     
     #iax2.text(26,-0.6,'(geomeans only for performance)',zorder=5, fontsize=12)
     
@@ -354,7 +354,7 @@ if infile in os.listdir('.'):
 
     #ifig.savefig('all_apps_mbw_DDR.png', bbox_inches='tight')
     #ifig.savefig('mlat_bd_and_mbw_CMP.png', bbox_inches='tight')
-    plt.savefig('mlat_bd_and_mbw_CMP.png', bbox_inches='tight')
+    plt.savefig('mlat_bd_and_mbw_CMP_doublecol.png', bbox_inches='tight')
 
 
 
