@@ -277,18 +277,22 @@ if infile in os.listdir('.'):
     plt.axhline(y=1, color='black', zorder=5, linestyle=':')
 
     #iax.legend(ncol=3,bbox_to_anchor=[0.5,1.15], loc='center')
-    iax.legend(ncol=3,bbox_to_anchor=[1,0.9], loc='right', fontsize=20)
+    iax.legend(ncol=3,bbox_to_anchor=[1,0.9], loc='right', fontsize=15)
 
     #plt.setp(iax.get_xticklabels(), rotation=35, horizontalalignment='center')
     plt.setp(iax.get_xticklabels(), rotation=45, ha='right', fontsize=16)
     #ifig.set_size_inches(10,4)
     ifig.set_size_inches(20,4)
-    plt.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int)
+    #plt.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int)
+    plt.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int, axis='y', alpha=0.4)
     #plt.ylabel('Performance (IPC) Relative to \nCXL baseline(4X)',fontsize=15)
-    plt.ylabel('Normalized Performance',fontsize=20, labelpad=10)
+    plt.ylabel('Normalized Performance',fontsize=16, labelpad=10)
+
+    iax.tick_params(axis='both', which='major', labelsize=13)
 
     if(is2X):
-        ifig.savefig('2X8X_plot.png', bbox_inches='tight')
+        #ifig.savefig('2X8X_plot.png', bbox_inches='tight')
+        ifig.savefig('2X8X_plot.pdf', bbox_inches='tight')
     else:
         ifig.savefig('1050ns_plot.png', bbox_inches='tight')
 

@@ -57,6 +57,12 @@ d64p_DDR_ipcs=[]
 d64p_CXL_ipcs=[]
 d64p_IPC_gains=[]
 
+#d128p_DDR_ipcs=[]
+#d128p_CXL_ipcs=[]
+d128p_IPC_gains=[]
+
+
+
 sa_d1p_DDR_ipcs=[]
 sa_d1p_CXL_ipcs=[]
 sa_d1p_IPC_gains=[]
@@ -69,6 +75,7 @@ sa_d32p_IPC_gains=[]
 sa_d64p_DDR_ipcs=[]
 sa_d64p_CXL_ipcs=[]
 sa_d64p_IPC_gains=[]
+sa_d128p_IPC_gains=[]
 
 sp_d1p_DDR_ipcs=[]
 sp_d1p_CXL_ipcs=[]
@@ -82,6 +89,7 @@ sp_d32p_IPC_gains=[]
 sp_d64p_DDR_ipcs=[]
 sp_d64p_CXL_ipcs=[]
 sp_d64p_IPC_gains=[]
+sp_d128p_IPC_gains=[]
 
 
 
@@ -145,7 +153,7 @@ def getGeomean(iarr):
 #color_list[getindex('6',partitions)][getindex('nocl',ddio_setups)]='#799A82'
 #color_list[getindex('12',partitions)][getindex('nocl',ddio_setups)]='#3D5A45'
 #color_list[getindex('ideal',partitions)][getindex('clean',ddio_setups)] ='#C26989'
-color_list=[ '#ABBFB0', '#799A82', '#3D5A45','darkslategrey', '#A89AE4', '#7C67D6', 'darkslateblue','#42347E']
+color_list=[ '#ABBFB0', '#799A82', '#3D5A45','#DA70D6', '#A89AE4', '#7C67D6', 'darkslateblue','#42347E']
 
 
 
@@ -198,6 +206,7 @@ if infile in os.listdir('.'):
         else:
             d64p_IPC_gains.append(((float(tmp[8]) / float(tmp[7]))))
 
+        d128p_IPC_gains.append(float(tmp[9]))
 
         if(is_SA):
             sa_d1p_DDR_ipcs.append(float(tmp[1]));
@@ -228,6 +237,7 @@ if infile in os.listdir('.'):
             else:
                 sa_d64p_IPC_gains.append(((float(tmp[8]) / float(tmp[7]))))
 
+            sa_d128p_IPC_gains.append(float(tmp[9]))
 
         else: ## geomean for non server app
             sp_d1p_DDR_ipcs.append(float(tmp[1]));
@@ -256,8 +266,8 @@ if infile in os.listdir('.'):
             if((float(tmp[7]) * float(tmp[8]))==0):
                 sp_d64p_IPC_gains.append(0)
             else:
-                sp_d64p_IPC_gains.append(((float(tmp[8]) / float(tmp[7]))))
-     
+                sp_d64p_IPC_gains.append(((float(tmp[8]) / float(tmp[7]))))     
+            sp_d128p_IPC_gains.append(float(tmp[9]))
         
         ## add empty entry to split server app and spec
         if(tmp[0]=='xapian'):
@@ -277,6 +287,7 @@ if infile in os.listdir('.'):
             d64p_DDR_ipcs.append(0)
             d64p_CXL_ipcs.append(0)
             d64p_IPC_gains.append(0)
+            d128p_IPC_gains.append(0)
 
         line=f.readline();
 
@@ -301,27 +312,32 @@ if infile in os.listdir('.'):
     d64p_DDR_ipcs.append(0)
     d64p_CXL_ipcs.append(0)
     d64p_IPC_gains.append(0)
+    d128p_IPC_gains.append(0)
 
     GM_d1p_ipcg= getGeomean(d1p_IPC_gains)
     GM_d16p_ipcg= getGeomean(d16p_IPC_gains)
     GM_d32p_ipcg= getGeomean(d32p_IPC_gains)
     GM_d64p_ipcg= getGeomean(d64p_IPC_gains)
+    GM_d128p_ipcg= getGeomean(d128p_IPC_gains)
 
     GM_sa_d1p_ipcg= getGeomean(sa_d1p_IPC_gains)
     GM_sa_d16p_ipcg= getGeomean(sa_d16p_IPC_gains)
     GM_sa_d32p_ipcg= getGeomean(sa_d32p_IPC_gains)
     GM_sa_d64p_ipcg= getGeomean(sa_d64p_IPC_gains)
+    GM_sa_d128p_ipcg= getGeomean(sa_d128p_IPC_gains)
 
     GM_sp_d1p_ipcg= getGeomean(sp_d1p_IPC_gains)
     GM_sp_d16p_ipcg= getGeomean(sp_d16p_IPC_gains)
     GM_sp_d32p_ipcg= getGeomean(sp_d32p_IPC_gains)
     GM_sp_d64p_ipcg= getGeomean(sp_d64p_IPC_gains)
+    GM_sp_d128p_ipcg= getGeomean(sp_d128p_IPC_gains)
 
 
     d1p_IPC_gains.append(GM_sa_d1p_ipcg)
     d16p_IPC_gains.append(GM_sa_d16p_ipcg)
     d32p_IPC_gains.append(GM_sa_d32p_ipcg)
     d64p_IPC_gains.append(GM_sa_d64p_ipcg)
+    d128p_IPC_gains.append(GM_sa_d128p_ipcg)
 
 
 
@@ -329,12 +345,14 @@ if infile in os.listdir('.'):
     d16p_IPC_gains.append(GM_sp_d16p_ipcg)
     d32p_IPC_gains.append(GM_sp_d32p_ipcg)
     d64p_IPC_gains.append(GM_sp_d64p_ipcg)
+    d128p_IPC_gains.append(GM_sp_d128p_ipcg)
 
 
     d1p_IPC_gains.append(GM_d1p_ipcg)
     d16p_IPC_gains.append(GM_d16p_ipcg)
     d32p_IPC_gains.append(GM_d32p_ipcg)
     d64p_IPC_gains.append(GM_d64p_ipcg)
+    d128p_IPC_gains.append(GM_d128p_ipcg)
 
     print(d64p_IPC_gains)
     print('gmean_1P: '+str(GM_d1p_ipcg))
@@ -370,19 +388,26 @@ if infile in os.listdir('.'):
     X_axis = np.arange(len(appNames))
     print(len(appNames))
     print(len(d1p_IPC_gains))
+    print(len(d128p_IPC_gains))
     
-    barwidth=0.18
+    barwidth=0.15
     alval=1
-    iax.bar(X_axis-(barwidth*1.5), d1p_IPC_gains,edgecolor='black',alpha=alval, color=color_list[4],label='1 core    (<1% util.)', width=barwidth, zorder=5)
-    iax.bar(X_axis-(barwidth*0.5), d16p_IPC_gains,edgecolor='black',alpha=alval, color=color_list[5],label='16 cores (12.5% util.)', width=barwidth, zorder=5)
-    iax.bar(X_axis+(barwidth*0.5), d32p_IPC_gains,edgecolor='black',alpha=alval, color=color_list[6],label='32 cores (25% util.)', width=barwidth, zorder=5)
-    iax.bar(X_axis+(barwidth*1.5), d64p_IPC_gains,edgecolor='black',alpha=alval, color=color_list[7],label='64 cores (50% util.)', width=barwidth, zorder=5)
-   
+    iax.bar(X_axis-(barwidth*2), d1p_IPC_gains,edgecolor='black',alpha=alval, color=color_list[3],label='1 core    (<1% util.)', width=barwidth, zorder=5)
+    iax.bar(X_axis-(barwidth*1), d16p_IPC_gains,edgecolor='black',alpha=alval, color=color_list[4],label='16 cores (12.5% util.)', width=barwidth, zorder=5)
+    iax.bar(X_axis+(barwidth*0), d32p_IPC_gains,edgecolor='black',alpha=alval, color=color_list[5],label='32 cores (25% util.)', width=barwidth, zorder=5)
+    iax.bar(X_axis+(barwidth*1), d64p_IPC_gains,edgecolor='black',alpha=alval, color=color_list[6],label='64 cores (50% util.)', width=barwidth, zorder=5)
+    iax.bar(X_axis+(barwidth*2), d128p_IPC_gains,edgecolor='black',alpha=alval, color=color_list[7],label='128 cores (100% util.)', width=barwidth, zorder=5)
+  
+    iax.margins(x=0.01)
+    iax.set_ylim(ymax=2.0)
+    #iax.text(0,2.32,str(round(IPC_gains[0],1)),zorder=5, fontsize=12, ha='center', rotation=45);
+    #iax.text(1,2.32,str(round(IPC_gains[1],1)),zorder=5, fontsize=12, ha='center', rotation=45);
+
     plt.axhline(y=1, color='black', zorder=5, linestyle=':')
-    plt.ylabel('Normalized Performance')
+    plt.ylabel('Normalized Performance', fontsize=15.5)
     #iax.legend(ncol=2,bbox_to_anchor=[0.5,1.15], loc='center', fontsize=18)
-    iax.legend(ncol=2, loc='best', fontsize=18)
-    plt.xticks(X_axis, appNames, fontsize=12)
+    iax.legend(ncol=2, loc='best', fontsize=15)
+    plt.xticks(X_axis, appNames, fontsize=13)
     #iax.set_xticks(X_axis+0.1)
     labels = iax.get_xticklabels()
 
@@ -405,11 +430,14 @@ if infile in os.listdir('.'):
         label.set_transform(label.get_transform() + offset)
 
     ifig.set_size_inches(20,4)
-    plt.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int)
-    major_ticks = np.arange(0, max(max(d32p_IPC_gains),max(d64p_IPC_gains)), 0.2)
+    plt.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int, axis='y', alpha=0.4)
+    #major_ticks = np.arange(0, max(max(d32p_IPC_gains),max(d64p_IPC_gains)), 0.2)
+    major_ticks = np.arange(0,2.0, 0.2)
     iax.set_yticks(major_ticks)
+    iax.tick_params(axis='both', which='major', labelsize=14)
 
-    ifig.savefig('lowload_multibar.png', bbox_inches='tight')
+    #ifig.savefig('lowload_multibar.png', bbox_inches='tight')
+    ifig.savefig('lowload_multibar.pdf', bbox_inches='tight')
 
     
 
