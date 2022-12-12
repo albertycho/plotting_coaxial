@@ -226,7 +226,7 @@ if infile in os.listdir('.'):
     fs_ytick=14;
     fs_xtick=16
     matplotlib.rcParams.update({'font.size': fs1})
-    ifig = plt.figure(figsize=(20, 10))
+    ifig = plt.figure(figsize=(20, 9))
     grid = plt.GridSpec(3, 34, wspace=1, hspace=0.1)
     
 
@@ -271,7 +271,7 @@ if infile in os.listdir('.'):
     #plt.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int, zorder=1)
     major_ticks = np.arange(0, 2.5, 0.5)
     iax0.set_yticks(major_ticks)
-    iax0.grid(color='gray', linestyle='--', linewidth=0.2, markevery=float, zorder=1)
+    iax0.grid(color='gray', linestyle='--', linewidth=0.2, markevery=float, zorder=1, alpha=0.4)
 
 
     ##### plot mlat breakdown for qd and st
@@ -307,7 +307,7 @@ if infile in os.listdir('.'):
     plt.yticks(fontsize=fs_ytick)
     #plt.setp(iax1.get_xticklabels(), rotation=45, ha='right', fontsize=13)
     #plt.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int, zorder=1)
-    iax1.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int, zorder=1)
+    iax1.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int, zorder=1, alpha=0.4)
 
     #ifig.savefig('mlat_qd_st_DDR.png', bbox_inches='tight')
 
@@ -345,7 +345,7 @@ if infile in os.listdir('.'):
     
     #iax2.text(26,-0.6,'(geomeans only for performance)',zorder=5, fontsize=12)
     
-    iax2.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int, zorder=1, axis='y')
+    iax2.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int, zorder=1, axis='y', alpha=0.4)
     #ifig.set_size_inches(20,10)
     #plt.set_size_inches(20,10)
     #plt.ylabel(fields[ii])
@@ -355,6 +355,7 @@ if infile in os.listdir('.'):
     #ifig.savefig('all_apps_mbw_DDR.png', bbox_inches='tight')
     #ifig.savefig('mlat_bd_and_mbw_CMP.png', bbox_inches='tight')
     plt.savefig('mlat_bd_and_mbw_CMP_doublecol.png', bbox_inches='tight')
+    plt.savefig('mlat_bd_and_mbw_CMP_doublecol.pdf', bbox_inches='tight')
 
 
 

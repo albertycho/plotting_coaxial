@@ -128,8 +128,8 @@ if infile in os.listdir('.'):
 
     barwidth = 0.5
     alval=1
-    iax1.bar(X_axis, DDR_mlats,edgecolor='black',alpha=alval, color=color_list[4],label='Queuing Delay', width=barwidth, zorder=4)
-    iax1.bar(X_axis, lowload_mlats,edgecolor='black',alpha=alval, color=color_list[0],label='Access Service Time', width=barwidth, zorder=5)
+    iax1.bar(X_axis, DDR_mlats,edgecolor='black',alpha=alval, color='lavender',label='Queuing Delay', width=barwidth, zorder=4)
+    iax1.bar(X_axis, lowload_mlats,edgecolor='black',alpha=alval, color='indigo',label='Access Service Time', width=barwidth, zorder=5)
     #iax1.bar(X_axis, dummy_for_MBW_label,edgecolor='black',alpha=alval, color='cornflowerblue',label='MBW Utilization', width=barwidth, zorder=5)
             
  
@@ -144,7 +144,7 @@ if infile in os.listdir('.'):
 
     #plt.setp(iax1.get_xticklabels(), rotation=45, ha='right', fontsize=13)
     #plt.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int, zorder=1)
-    iax1.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int, zorder=1)
+    iax1.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int, zorder=1, axis='y', alpha=0.3)
 
     #ifig.savefig('mlat_qd_st_DDR.png', bbox_inches='tight')
 
@@ -180,11 +180,13 @@ if infile in os.listdir('.'):
     offset = matplotlib.transforms.ScaledTranslation(dx, dy, ifig.dpi_scale_trans) 
     
     ifig.set_size_inches(10,4)
-    plt.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int, zorder=1)
+    #plt.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int, zorder=1, alpha=0.3)
+    iax2.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int, zorder=1, axis='y', alpha=0.3)
     #plt.ylabel(fields[ii])
 
     #ifig.savefig('all_apps_mbw_DDR.png', bbox_inches='tight')
     ifig.savefig('mlat_bd_and_mbw_DDR.png', bbox_inches='tight')
+    ifig.savefig('mlat_bd_and_mbw_DDR.pdf', bbox_inches='tight')
 
 
 

@@ -159,9 +159,17 @@ if infile in os.listdir('.'):
     
     iax.plot(MBW_UTILS, AVGLATS, label='Average Latency', alpha=alval, color=color_list[2], linewidth=barwidth, zorder=5)
     iax.plot(MBW_UTILS, LAT90S, label='90% Latency', alpha=alval, color=color_list[3], linewidth=barwidth, zorder=4)
-    plt.axvline(x=70, linewidth=barwidth/3, color='black', linestyle='--')
-    plt.axhline(y=168, linewidth=barwidth/3, color='black', linestyle='--')
-    plt.axhline(y=405, linewidth=barwidth/3, color='black', linestyle='--')
+    #plt.axvline(x=70, linewidth=barwidth/3, color='black', linestyle='--')
+    #plt.axhline(y=168, linewidth=barwidth/3, color='black', linestyle='--')
+    #plt.axhline(y=405, linewidth=barwidth/3, color='black', linestyle='--')
+    
+    #plt.axhline(y=50, linewidth=barwidth/3, color='green', linestyle='--')
+    #plt.axhline(y=100, linewidth=barwidth/3, color='orange', linestyle='--')
+    #plt.axhline(y=300, linewidth=barwidth/3, color='red', linestyle='--')
+    plt.axvline(x=60, linewidth=barwidth/3, color='green', linestyle='--')
+    plt.axvline(x=15, linewidth=barwidth/3, color='green', linestyle='--')
+    plt.axvline(x=80, linewidth=barwidth/3, color='orange', linestyle='--')
+    plt.axvline(x=20, linewidth=barwidth/3, color='orange', linestyle='--')
    
     myfontsize=50
     
@@ -174,7 +182,8 @@ if infile in os.listdir('.'):
     #ifig.set_size_inches(16,3)
     ifig.set_size_inches(20,15)
     #plt.subplots_adjust(bottom=0.2)
-    plt.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int, zorder=0, axis='both')
+    #plt.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int, zorder=0, axis='both', alpha=0.5)
+    plt.grid(color='black', linestyle='--', linewidth=0.4, markevery=int, zorder=0, axis='both', alpha=0.9)
 
     #plt.xlabel('\nType_Delay(ns)')
     iax.set_ylim([0,510])
@@ -185,6 +194,7 @@ if infile in os.listdir('.'):
 
 
     ifig.savefig('BW_LATENCY_motivation_util.png', bbox_inches='tight')
+    ifig.savefig('BW_LATENCY_motivation_util.pdf', bbox_inches='tight')
     #ifig.savefig(field_names[i]+'.png',dpi=1000)
         
 

@@ -54,10 +54,22 @@ def getindex(elem, arr):
     exit
     return -1
 
+#def getGeomean(iarr):
+#    a=np.array(iarr);
+#    return a.prod()**(1.0/len(a))
 def getGeomean(iarr):
     a=np.array(iarr);
-    return a.prod()**(1.0/len(a))
-
+    #np.delete(a, 0)
+    na=a;
+    i=0
+    while (i<len(a)):
+    #for i in range(len(a)):
+        if(a[i]==0):
+            na=np.delete(a,[i])
+            a=na
+        else:
+            i=i+1
+    return na.prod()**(1.0/len(na))
 #color_list= [[['black'] for l in range(ddioslen)] for k in range(ptlen)]
 #
 #color_list[getindex('2',partitions)][getindex('clean',ddio_setups)]='#A89AE4'
@@ -111,7 +123,6 @@ if infile in os.listdir('.'):
     matplotlib.rcParams.update({'font.size': 20})
 
 
-    appNames.append('gmean')
     GM_fixed_ipcs= getGeomean(fixed_ipcs)
     GM_350_ipcs= getGeomean(d350_ipcs)
     GM_450_ipcs= getGeomean(d450_ipcs)
@@ -127,8 +138,13 @@ if infile in os.listdir('.'):
     #d350_norm.append( GM_fixed_ipcs / GM_350_ipcs)
     #d450_norm.append( GM_fixed_ipcs / GM_450_ipcs)
     #d550_norm.append( GM_fixed_ipcs / GM_550_ipcs)
-    
+   
+    #appNames.append('')
+    #d350_norm.append(0) 
+    #d450_norm.append(0)
+    #d550_norm.append(0)    
 
+    appNames.append('gm')
     ##IPC
     d350_norm.append( GM_350_ipcs / GM_fixed_ipcs  )
     d450_norm.append( GM_450_ipcs / GM_fixed_ipcs  )
@@ -150,8 +166,9 @@ if infile in os.listdir('.'):
     #d350_bar = iax.bar(X_axis-(barwidth), d350_norm,edgecolor='black',alpha=alval, color=color_list[4],label='80% 100ns, 20% 350ns', width=barwidth, zorder=6)
     #d450_bar = iax.bar(X_axis, d450_norm,edgecolor='black',alpha=alval, color=color_list[5],label='80% 75ns,   20% 450ns', width=barwidth, zorder=6)
     #d550_bar = iax.bar(X_axis+(barwidth), d550_norm,edgecolor='black',alpha=alval, color=color_list[7],label='80% 50ns,   20% 550ns', width=barwidth, zorder=6)
- 
-
+    
+    iax.axhline(y=1,color='black',linestyle='--')
+    
     #iax.margins(y=0.2)
     #print('dummy')
     #tmp_count=0
@@ -167,14 +184,18 @@ if infile in os.listdir('.'):
  
     plt.xticks(X_axis, appNames, fontsize=20)
     #iax.legend(ncol=2, reversed(handles), reversed(labels), loc='upper left')
-    iax.legend(ncol=3,bbox_to_anchor=[0.5,1.15], loc='center')
+    iax.legend(ncol=3,bbox_to_anchor=[0.42,1.15], loc='center')
 
     plt.setp(iax.get_xticklabels(), rotation=35, horizontalalignment='center')
     ifig.set_size_inches(10,4)
-    plt.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int)
+    #plt.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int)
+    #plt.grid(color='gray', linestyle='--', linewidth=0.2, markevery=int, zorder=1, axis='y', alpha=0.3) #for pdf
+    plt.grid(color='gray', linestyle='--', linewidth=0.7, markevery=int, zorder=1, axis='y', alpha=0.9) #for png
+
     plt.ylabel('Performance normalized \nto fixed latency',fontsize=20, labelpad=10)
 
     ifig.savefig('memvar_exp_plot_ipc.png', bbox_inches='tight')
+    ifig.savefig('memvar_exp_plot_ipc.pdf', bbox_inches='tight')
 
     print(d350_norm) 
     print(d450_norm) 

@@ -240,7 +240,7 @@ if infile in os.listdir('.'):
     #ddr_bar = iax.bar(X_axis-(barwidth/2), DDR_arrs[ii],edgecolor='black',alpha=alval, color=color_list[0],label='DDR Memory', width=barwidth, zorder=5)
     #d2X_bar = iax.bar(X_axis-(barwidth), d2X_gains,edgecolor='black',alpha=alval, color=color_list[4],label=legend_labels[0], width=barwidth, zorder=5)
     d4X_bar = iax.bar(X_axis, d4X_gains,edgecolor='black',alpha=alval, color=color_list[4],label=legend_labels[1], width=barwidth, zorder=5)
-    d8X_bar = iax.bar(X_axis+(barwidth), d8X_gains,edgecolor='black',alpha=alval, color=color_list[5],label= legend_labels[2], width=barwidth, zorder=5)
+    d8X_bar = iax.bar(X_axis+(barwidth), d8X_gains,edgecolor='black',alpha=alval, color=color_list[6],label= legend_labels[2], width=barwidth, zorder=5)
 
     plt.axhline(y=1, color='black', zorder=5, linestyle=':')
     ###plotting normalized to 4X

@@ -22,6 +22,7 @@ for dd in dir_list:
         print(dd)
         os.system('rm mem_lat* stat_summary.txt')
         os.system('~/CXL_WD/plot_mlatCDF_CMP.py --app '+dd)
-        os.system('cp mem_lat_cdf_cut600_'+dd+'.png ../allcdfs/mem_lat_cdf_cut600_'+dd+'.png')
+        #os.system('cp mem_lat_cdf_cut600_'+dd+'.png ../allcdfs/mem_lat_cdf_cut600_'+dd+'.png')
+        os.system('cp mem_lat_cdf_cut600_'+dd+'.pdf ../allcdfs/mem_lat_cdf_cut600_'+dd+'.pdf')
         os.system('cd ..')
         os.chdir('..')
